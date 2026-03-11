@@ -1,0 +1,1053 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Checklist Gratuita — Auditoría Digital en 10 minutos · María José Lidueña</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<!-- Mailerlite universal script -->
+<script>
+  (function(w,d,e,u,f,l,n){w[f]=w[f]||function(){(w[f].q=w[f].q||[]).push(arguments);},l=d.createElement(e),l.async=1,l.src=u,n=d.getElementsByTagName(e)[0],n.parentNode.insertBefore(l,n);})(window,document,'script','https://assets.mailerlite.com/js/universal.js','ml');
+  ml('account', '2181209');
+</script>
+<style>
+  :root {
+    --red: #C8392B;
+    --red-light: #E85040;
+    --pink: #F5D5D0;
+    --dark: #1A1008;
+    --warm: #F9F3EE;
+    --mid: #8B6F65;
+    --accent: #D4A853;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--warm);
+    color: var(--dark);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+    min-height: 100vh;
+  }
+
+  /* ── NOISE TEXTURE OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.4;
+  }
+
+  /* ── TOP BAR ── */
+  .topbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 60px;
+    background: rgba(249, 243, 238, 0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(200, 57, 43, 0.1);
+  }
+
+  .logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--dark);
+    letter-spacing: -0.5px;
+  }
+
+  .logo span { color: var(--red); font-style: italic; }
+
+  .topbar-badge {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--mid);
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 0;
+    padding-top: 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    top: -200px;
+    right: -100px;
+    width: 700px;
+    height: 700px;
+    background: radial-gradient(circle, var(--pink) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Diagonal accent line */
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 1px;
+    height: 100%;
+    background: linear-gradient(to bottom, transparent, rgba(200,57,43,0.15), transparent);
+    z-index: 1;
+  }
+
+  .hero-left {
+    padding: 80px 60px 80px 80px;
+    position: relative;
+    z-index: 2;
+    animation: slideInLeft 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    opacity: 0;
+  }
+
+  .hero-right {
+    padding: 80px 80px 80px 60px;
+    position: relative;
+    z-index: 2;
+    animation: slideInRight 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.15s forwards;
+    opacity: 0;
+  }
+
+  @keyframes slideInLeft {
+    from { opacity: 0; transform: translateX(-30px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+  @keyframes slideInRight {
+    from { opacity: 0; transform: translateX(30px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  /* ── EYEBROW ── */
+  .eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 36px;
+  }
+
+  .eyebrow-pill {
+    background: var(--red);
+    color: white;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    padding: 6px 14px;
+  }
+
+  .eyebrow-line {
+    height: 1px;
+    width: 40px;
+    background: var(--red);
+    opacity: 0.4;
+  }
+
+  .eyebrow-text {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--mid);
+  }
+
+  /* ── HEADLINE ── */
+  .headline {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(42px, 5vw, 72px);
+    font-weight: 900;
+    line-height: 0.95;
+    letter-spacing: -2px;
+    color: var(--dark);
+    margin-bottom: 28px;
+  }
+
+  .headline em {
+    color: var(--red);
+    font-style: italic;
+    display: block;
+  }
+
+  .subheadline {
+    font-size: clamp(16px, 1.5vw, 19px);
+    line-height: 1.7;
+    color: var(--mid);
+    max-width: 460px;
+    margin-bottom: 48px;
+    font-weight: 300;
+  }
+
+  .subheadline strong {
+    color: var(--dark);
+    font-weight: 500;
+  }
+
+  /* ── WHAT YOU GET ── */
+  .gets {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 48px;
+  }
+
+  .get-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    animation: fadeUp 0.6s ease forwards;
+    opacity: 0;
+  }
+
+  .get-item:nth-child(1) { animation-delay: 0.5s; }
+  .get-item:nth-child(2) { animation-delay: 0.65s; }
+  .get-item:nth-child(3) { animation-delay: 0.8s; }
+  .get-item:nth-child(4) { animation-delay: 0.95s; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .get-check {
+    width: 22px;
+    height: 22px;
+    background: var(--red);
+    color: white;
+    font-size: 11px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .get-text {
+    font-size: 15px;
+    line-height: 1.5;
+    color: var(--dark);
+    font-weight: 300;
+  }
+
+  .get-text strong { font-weight: 500; }
+
+  /* ── SOCIAL PROOF STRIP ── */
+  .social-strip {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px 0;
+    border-top: 1px solid rgba(200,57,43,0.15);
+  }
+
+  .social-avatars {
+    display: flex;
+  }
+
+  .avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 2px solid var(--warm);
+    background: var(--pink);
+    margin-left: -8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--red);
+    overflow: hidden;
+  }
+
+  .avatar:first-child { margin-left: 0; }
+
+  .social-text {
+    font-size: 13px;
+    color: var(--mid);
+    line-height: 1.4;
+  }
+
+  .social-text strong { color: var(--dark); font-weight: 500; }
+
+  /* ── FORM CARD ── */
+  .form-card {
+    background: var(--dark);
+    color: white;
+    padding: 52px 48px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .form-card::before {
+    content: '';
+    position: absolute;
+    top: -60px;
+    right: -60px;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(200,57,43,0.3) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .form-card::after {
+    content: '';
+    position: absolute;
+    bottom: -40px;
+    left: -40px;
+    width: 150px;
+    height: 150px;
+    background: radial-gradient(circle, rgba(212,168,83,0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .form-eyebrow {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 16px;
+  }
+
+  .form-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(26px, 3vw, 36px);
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 8px;
+    color: white;
+  }
+
+  .form-title em {
+    color: var(--red-light);
+    font-style: italic;
+  }
+
+  .form-subtitle {
+    font-size: 14px;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 36px;
+    line-height: 1.5;
+  }
+
+  /* ── FORM FIELDS ── */
+  .field {
+    margin-bottom: 20px;
+    position: relative;
+  }
+
+  .field label {
+    display: block;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    margin-bottom: 8px;
+  }
+
+  .field input, .field select {
+    width: 100%;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: white;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 300;
+    padding: 14px 18px;
+    outline: none;
+    transition: border-color 0.2s, background 0.2s;
+    appearance: none;
+  }
+
+  .field input::placeholder { color: rgba(255,255,255,0.2); }
+
+  .field input:focus, .field select:focus {
+    border-color: var(--red);
+    background: rgba(200, 57, 43, 0.08);
+  }
+
+  .field select { cursor: pointer; color: rgba(255,255,255,0.6); }
+  .field select option { background: var(--dark); color: white; }
+
+  .field-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  /* ── SUBMIT BTN ── */
+  .btn-submit {
+    width: 100%;
+    background: var(--red);
+    color: white;
+    border: none;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 18px 36px;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+    margin-top: 8px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .btn-submit::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: white;
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+
+  .btn-submit:hover { background: var(--red-light); transform: translateY(-2px); }
+  .btn-submit:active { transform: translateY(0); }
+
+  .btn-arrow {
+    font-size: 18px;
+    transition: transform 0.2s;
+  }
+
+  .btn-submit:hover .btn-arrow { transform: translateX(4px); }
+
+  /* ── TRUST BADGES ── */
+  .trust {
+    display: flex;
+    gap: 20px;
+    margin-top: 24px;
+    flex-wrap: wrap;
+  }
+
+  .trust-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    color: rgba(255,255,255,0.35);
+    letter-spacing: 0.5px;
+  }
+
+  .trust-icon { font-size: 13px; }
+
+  /* ── SUCCESS STATE ── */
+  .success-state {
+    display: none;
+    text-align: center;
+    padding: 20px 0;
+    animation: fadeUp 0.5s ease forwards;
+  }
+
+  .success-icon {
+    width: 64px;
+    height: 64px;
+    background: var(--red);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    margin: 0 auto 24px;
+  }
+
+  .success-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+
+  .success-text {
+    font-size: 14px;
+    color: rgba(255,255,255,0.55);
+    line-height: 1.6;
+    max-width: 300px;
+    margin: 0 auto;
+  }
+
+  /* ── PREVIEW STRIP ── */
+  .preview-section {
+    background: var(--pink);
+    padding: 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .preview-section::before {
+    content: 'CHECKLIST';
+    font-family: 'Playfair Display', serif;
+    font-size: 140px;
+    font-weight: 900;
+    color: rgba(200,57,43,0.06);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    white-space: nowrap;
+    letter-spacing: -4px;
+    pointer-events: none;
+  }
+
+  .preview-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .preview-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 24px;
+  }
+
+  .preview-heading {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 3.5vw, 48px);
+    font-weight: 900;
+    line-height: 1.05;
+    letter-spacing: -1.5px;
+    color: var(--dark);
+    margin-bottom: 28px;
+  }
+
+  .preview-body {
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--mid);
+    margin-bottom: 36px;
+  }
+
+  .preview-items {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .preview-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    background: white;
+    padding: 20px 24px;
+    border-left: 3px solid var(--red);
+    transition: transform 0.2s;
+  }
+
+  .preview-item:hover { transform: translateX(4px); }
+
+  .preview-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 900;
+    color: var(--red);
+    opacity: 0.3;
+    line-height: 1;
+    flex-shrink: 0;
+    margin-top: -2px;
+  }
+
+  .preview-item-content {}
+
+  .preview-item-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--dark);
+    margin-bottom: 4px;
+    letter-spacing: 0.3px;
+  }
+
+  .preview-item-desc {
+    font-size: 13px;
+    color: var(--mid);
+    line-height: 1.5;
+  }
+
+  /* ── SOBRE MÍ STRIP ── */
+  .about-strip {
+    background: var(--dark);
+    padding: 72px 80px;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 60px;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .about-strip::before {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 300px;
+    background: linear-gradient(to left, rgba(200,57,43,0.08), transparent);
+  }
+
+  .about-photo {
+    width: 120px;
+    height: 120px;
+    background: linear-gradient(135deg, var(--red) 0%, var(--accent) 100%);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 48px;
+    font-weight: 900;
+    color: white;
+    letter-spacing: -2px;
+    position: relative;
+  }
+
+  .about-photo::after {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border: 1px solid rgba(200,57,43,0.4);
+  }
+
+  .about-text { color: white; }
+
+  .about-label {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+
+  .about-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    letter-spacing: -0.5px;
+  }
+
+  .about-bio {
+    font-size: 15px;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.55);
+    max-width: 620px;
+  }
+
+  .about-bio strong { color: rgba(255,255,255,0.85); font-weight: 500; }
+
+  .brand-logos {
+    display: flex;
+    gap: 12px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+  }
+
+  .brand-tag {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.3);
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 5px 10px;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--dark);
+    border-top: 1px solid rgba(255,255,255,0.05);
+    padding: 24px 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: white;
+    opacity: 0.4;
+  }
+
+  .footer-copy {
+    font-size: 11px;
+    color: rgba(255,255,255,0.2);
+    letter-spacing: 0.5px;
+  }
+
+  .footer-privacy {
+    font-size: 11px;
+    color: rgba(255,255,255,0.2);
+    text-decoration: none;
+    letter-spacing: 0.5px;
+    transition: color 0.2s;
+  }
+
+  .footer-privacy:hover { color: rgba(255,255,255,0.5); }
+
+  /* ── FLOATING URGENCY BAR ── */
+  .urgency-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: var(--red);
+    color: white;
+    text-align: center;
+    padding: 14px 24px;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    z-index: 99;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    animation: slideUp 1s cubic-bezier(0.16, 1, 0.3, 1) 1.5s both;
+  }
+
+  @keyframes slideUp {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0); }
+  }
+
+  .urgency-bar a {
+    color: white;
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    cursor: pointer;
+  }
+
+  .urgency-dot {
+    width: 8px;
+    height: 8px;
+    background: white;
+    border-radius: 50%;
+    animation: pulse 1.5s infinite;
+    flex-shrink: 0;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.7); }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .topbar { padding: 16px 24px; }
+    .hero { grid-template-columns: 1fr; padding-top: 70px; }
+    .hero::before { display: none; }
+    .hero-left { padding: 60px 28px 40px; }
+    .hero-right { padding: 0 28px 80px; }
+    .field-row { grid-template-columns: 1fr; }
+    .form-card { padding: 40px 28px; }
+    .preview-section { padding: 60px 28px; }
+    .preview-inner { grid-template-columns: 1fr; gap: 40px; }
+    .about-strip { padding: 60px 28px; grid-template-columns: 1fr; }
+    .about-photo { width: 80px; height: 80px; font-size: 32px; }
+    footer { padding: 20px 24px; flex-direction: column; gap: 8px; text-align: center; }
+    .urgency-bar { font-size: 12px; padding: 12px 16px; }
+  }
+
+  /* ── MAILERLITE OVERRIDES ── */
+  .ml-embedded { margin: 0 !important; }
+  .ml-embedded .ml-form-embedWrapper { background: transparent !important; padding: 0 !important; }
+  .ml-embedded .ml-form-embedBody { padding: 0 !important; background: transparent !important; }
+  .ml-embedded .ml-form-embedContent { display: none !important; }
+  .ml-embedded .ml-form-fieldRow { margin-bottom: 16px !important; }
+  .ml-embedded .ml-field-group { margin-bottom: 0 !important; }
+  .ml-embedded input[type="text"],
+  .ml-embedded input[type="email"] {
+    width: 100% !important;
+    background: rgba(255,255,255,0.06) !important;
+    border: 1px solid rgba(255,255,255,0.1) !important;
+    border-radius: 0 !important;
+    color: white !important;
+    font-family: 'DM Sans', sans-serif !important;
+    font-size: 15px !important;
+    font-weight: 300 !important;
+    padding: 14px 18px !important;
+    outline: none !important;
+    box-shadow: none !important;
+    transition: border-color 0.2s !important;
+  }
+  .ml-embedded input[type="text"]::placeholder,
+  .ml-embedded input[type="email"]::placeholder { color: rgba(255,255,255,0.25) !important; }
+  .ml-embedded input[type="text"]:focus,
+  .ml-embedded input[type="email"]:focus {
+    border-color: #C8392B !important;
+    background: rgba(200,57,43,0.08) !important;
+  }
+  .ml-embedded .ml-form-embedSubmit button,
+  .ml-embedded button[type="submit"] {
+    width: 100% !important;
+    background: #C8392B !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 0 !important;
+    font-family: 'DM Sans', sans-serif !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    letter-spacing: 2px !important;
+    text-transform: uppercase !important;
+    padding: 18px 36px !important;
+    cursor: pointer !important;
+    transition: background 0.2s !important;
+    margin-top: 4px !important;
+    box-shadow: none !important;
+  }
+  .ml-embedded .ml-form-embedSubmit button:hover,
+  .ml-embedded button[type="submit"]:hover { background: #E85040 !important; }
+  .ml-embedded .ml-form-successBody {
+    background: transparent !important;
+    padding: 0 !important;
+    text-align: center !important;
+  }
+  .ml-embedded .ml-form-successContent h4 {
+    font-family: 'Playfair Display', serif !important;
+    font-size: 28px !important;
+    color: white !important;
+    font-weight: 700 !important;
+    margin-bottom: 12px !important;
+  }
+  .ml-embedded .ml-form-successContent p {
+    color: rgba(255,255,255,0.55) !important;
+    font-size: 14px !important;
+    line-height: 1.6 !important;
+  }
+  .ml-embedded label {
+    font-size: 11px !important;
+    font-weight: 500 !important;
+    letter-spacing: 1.5px !important;
+    text-transform: uppercase !important;
+    color: rgba(255,255,255,0.4) !important;
+    margin-bottom: 8px !important;
+    display: block !important;
+  }
+  .ml-embedded .ml-error-container,
+  .ml-embedded .ml-form-errorBody { color: #E85040 !important; font-size: 12px !important; }
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<header class="topbar">
+  <div class="logo">MJ <span>Lidueña</span></div>
+  <div class="topbar-badge">Recurso gratuito</div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+
+  <div class="hero-left">
+    <div class="eyebrow">
+      <div class="eyebrow-pill">Gratis</div>
+      <div class="eyebrow-line"></div>
+      <div class="eyebrow-text">Descarga inmediata</div>
+    </div>
+
+    <h1 class="headline">
+      Tu proyecto digital<br>
+      tiene fugas.<br>
+      <em>Encuentra cuáles.</em>
+    </h1>
+
+    <p class="subheadline">
+      Una checklist de <strong>10 minutos</strong> para diagnosticar los errores más comunes en la gestión y estrategia digital — y saber exactamente qué arreglar primero.
+    </p>
+
+    <div class="gets">
+      <div class="get-item">
+        <div class="get-check">✓</div>
+        <div class="get-text"><strong>5 áreas críticas</strong> que determinan si tu proyecto digital crecerá o se estancará</div>
+      </div>
+      <div class="get-item">
+        <div class="get-check">✓</div>
+        <div class="get-text"><strong>Preguntas de diagnóstico</strong> que raramente nadie se hace hasta que ya es tarde</div>
+      </div>
+      <div class="get-item">
+        <div class="get-check">✓</div>
+        <div class="get-text"><strong>Priorización clara:</strong> qué resolver esta semana, qué puede esperar</div>
+      </div>
+      <div class="get-item">
+        <div class="get-check">✓</div>
+        <div class="get-text"><strong>Basada en +100 proyectos</strong> gestionados para Endesa, Sanitas y Repsol</div>
+      </div>
+    </div>
+
+    <div class="social-strip">
+      <div class="social-avatars">
+        <div class="avatar">A</div>
+        <div class="avatar">M</div>
+        <div class="avatar">R</div>
+        <div class="avatar">L</div>
+        <div class="avatar" style="background: var(--dark); color: white; font-size: 10px;">+</div>
+      </div>
+      <div class="social-text">
+        <strong>+200 directivos y managers</strong> ya la han descargado esta semana
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="form-card">
+      <div class="form-eyebrow">Acceso gratuito · Sin tarjeta</div>
+      <h2 class="form-title">Recibe la checklist<br><em>ahora mismo</em></h2>
+      <p class="form-subtitle">Rellena tus datos y te la enviamos al instante. Sin spam, sin compromisos.</p>
+
+      <!-- Mailerlite embed -->
+      <div class="ml-embedded" data-form="r0xS6Z"></div>
+
+      <div class="trust">
+        <div class="trust-item">
+          <span class="trust-icon">🔒</span>
+          <span>100% privado</span>
+        </div>
+        <div class="trust-item">
+          <span class="trust-icon">⚡</span>
+          <span>Envío inmediato</span>
+        </div>
+        <div class="trust-item">
+          <span class="trust-icon">🚫</span>
+          <span>Sin spam</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- PREVIEW DE LA CHECKLIST -->
+<section class="preview-section">
+  <div class="preview-inner">
+    <div>
+      <p class="preview-label">Qué incluye</p>
+      <h2 class="preview-heading">5 bloques de diagnóstico que marcan la diferencia</h2>
+      <p class="preview-body">Cada bloque te da claridad sobre un área específica de tu negocio digital. En 10 minutos sabes exactamente dónde estás fallando y por qué.</p>
+    </div>
+
+    <div class="preview-items">
+      <div class="preview-item">
+        <div class="preview-num">01</div>
+        <div class="preview-item-content">
+          <div class="preview-item-title">Estrategia y posicionamiento</div>
+          <div class="preview-item-desc">¿Tienes un mensaje claro? ¿Sabe tu equipo a dónde va?</div>
+        </div>
+      </div>
+      <div class="preview-item">
+        <div class="preview-num">02</div>
+        <div class="preview-item-content">
+          <div class="preview-item-title">Gestión y estructura de proyectos</div>
+          <div class="preview-item-desc">¿Tus proyectos terminan a tiempo? ¿Hay alguien mirando el todo?</div>
+        </div>
+      </div>
+      <div class="preview-item">
+        <div class="preview-num">03</div>
+        <div class="preview-item-content">
+          <div class="preview-item-title">Campañas y captación de clientes</div>
+          <div class="preview-item-desc">¿Sabes cuánto te cuesta un cliente? ¿Qué canales funcionan realmente?</div>
+        </div>
+      </div>
+      <div class="preview-item">
+        <div class="preview-num">04</div>
+        <div class="preview-item-content">
+          <div class="preview-item-title">KPIs y medición de resultados</div>
+          <div class="preview-item-desc">¿Tomas decisiones con datos? ¿O tienes dashboards que nadie mira?</div>
+        </div>
+      </div>
+      <div class="preview-item">
+        <div class="preview-num">05</div>
+        <div class="preview-item-content">
+          <div class="preview-item-title">Autonomía del equipo y escalabilidad</div>
+          <div class="preview-item-desc">¿Tu negocio funciona sin ti? ¿Podrías crecer sin trabajar más horas?</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOBRE MÍ -->
+<section class="about-strip">
+  <div class="about-photo">MJ</div>
+  <div class="about-text">
+    <div class="about-label">Quién está detrás</div>
+    <div class="about-name">María José Lidueña</div>
+    <p class="about-bio">
+      Soy consultora de estrategia digital y project manager con más de 5 años gestionando proyectos para grandes cuentas. He coordinado <strong>más de 100 proyectos simultáneos</strong> en sectores como energía, salud y seguros. Combino formación en <strong>Psicología y Marketing Digital</strong> para entender tanto los números como las personas detrás de cada decisión de compra.
+    </p>
+    <div class="brand-logos">
+      <span class="brand-tag">Endesa</span>
+      <span class="brand-tag">Sanitas</span>
+      <span class="brand-tag">Repsol</span>
+      <span class="brand-tag">Pirelli</span>
+      <span class="brand-tag">US Open</span>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">MJ Lidueña</div>
+  <div class="footer-copy">© 2026 · Digital Strategy & Project Management · Madrid</div>
+  <a href="#" class="footer-privacy">Privacidad</a>
+</footer>
+
+<!-- URGENCY BAR -->
+<div class="urgency-bar" id="urgency-bar">
+  <div class="urgency-dot"></div>
+  <span>Oferta limitada — <strong>Diagnóstico gratuito de 30 min</strong> disponible esta semana. <a onclick="scrollToForm()">Descarga la checklist y reserva el tuyo →</a></span>
+  <div class="urgency-dot"></div>
+</div>
+
+<script>
+  function scrollToForm() {
+    document.querySelector('.ml-embedded').scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+
+  // Smooth scroll for internal links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) target.scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+</script>
+
+</body>
+</html>
