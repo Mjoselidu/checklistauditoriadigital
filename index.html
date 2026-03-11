@@ -850,14 +850,22 @@
     font-size: 14px !important;
     line-height: 1.6 !important;
   }
-  .ml-embedded label {
+  .ml-embedded label,
+  .ml-embedded .ml-form-fieldRow label,
+  .ml-embedded .ml-field-group label {
     font-size: 11px !important;
     font-weight: 500 !important;
     letter-spacing: 1.5px !important;
     text-transform: uppercase !important;
-    color: rgba(255,255,255,0.4) !important;
+    color: rgba(255,255,255,0.5) !important;
     margin-bottom: 8px !important;
     display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    height: auto !important;
+    overflow: visible !important;
+    clip: unset !important;
+    position: relative !important;
   }
   .ml-embedded .ml-error-container,
   .ml-embedded .ml-form-errorBody { color: #E85040 !important; font-size: 12px !important; }
