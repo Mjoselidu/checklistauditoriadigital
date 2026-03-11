@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>¡Ya está en camino! · María José Lidueña</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red: #C8392B;
+    --red-light: #E85040;
+    --pink: #F5D5D0;
+    --dark: #1A1008;
+    --warm: #F9F3EE;
+    --mid: #8B6F65;
+    --accent: #D4A853;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--dark);
+    color: white;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+  }
+
+  /* ── BACKGROUND EFFECTS ── */
+  .bg-glow {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .bg-glow::before {
+    content: '';
+    position: absolute;
+    top: -20%;
+    left: -10%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(200,57,43,0.18) 0%, transparent 70%);
+  }
+
+  .bg-glow::after {
+    content: '';
+    position: absolute;
+    bottom: -10%;
+    right: -10%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(212,168,83,0.1) 0%, transparent 70%);
+  }
+
+  /* ── TOP BAR ── */
+  .topbar {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    padding: 28px 60px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: white;
+    letter-spacing: -0.5px;
+  }
+
+  .logo span { color: var(--red); font-style: italic; }
+
+  /* ── MAIN ── */
+  main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 24px;
+    position: relative;
+    z-index: 2;
+    text-align: center;
+  }
+
+  /* ── SUCCESS ICON ── */
+  .success-ring {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    margin: 0 auto 48px;
+    animation: scaleIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  @keyframes scaleIn {
+    from { opacity: 0; transform: scale(0.5); }
+    to { opacity: 1; transform: scale(1); }
+  }
+
+  .success-ring::before {
+    content: '';
+    position: absolute;
+    inset: -8px;
+    border: 1px solid rgba(200,57,43,0.3);
+    border-radius: 50%;
+    animation: ripple 2s ease-out 0.6s infinite;
+  }
+
+  @keyframes ripple {
+    0% { transform: scale(1); opacity: 1; }
+    100% { transform: scale(1.4); opacity: 0; }
+  }
+
+  .success-circle {
+    width: 100px;
+    height: 100px;
+    background: var(--red);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* ── COPY ── */
+  .eyebrow {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 20px;
+    animation: fadeUp 0.6s ease 0.3s both;
+  }
+
+  .headline {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(42px, 6vw, 72px);
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -2px;
+    margin-bottom: 24px;
+    animation: fadeUp 0.6s ease 0.4s both;
+  }
+
+  .headline em {
+    color: var(--red-light);
+    font-style: italic;
+    display: block;
+  }
+
+  .subtext {
+    font-size: clamp(16px, 1.5vw, 19px);
+    line-height: 1.7;
+    color: rgba(255,255,255,0.55);
+    max-width: 480px;
+    margin: 0 auto 56px;
+    animation: fadeUp 0.6s ease 0.5s both;
+  }
+
+  .subtext strong { color: white; font-weight: 500; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── STEPS ── */
+  .steps {
+    display: flex;
+    gap: 0;
+    margin-bottom: 64px;
+    animation: fadeUp 0.6s ease 0.6s both;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding: 0 32px;
+    position: relative;
+    max-width: 200px;
+  }
+
+  .step:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    right: -1px;
+    top: 20px;
+    width: 1px;
+    height: 40px;
+    background: rgba(255,255,255,0.1);
+  }
+
+  .step-num {
+    width: 40px;
+    height: 40px;
+    border: 1px solid rgba(200,57,43,0.4);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--red-light);
+  }
+
+  .step-text {
+    font-size: 13px;
+    color: rgba(255,255,255,0.45);
+    line-height: 1.5;
+    text-align: center;
+  }
+
+  .step-text strong {
+    display: block;
+    color: rgba(255,255,255,0.8);
+    font-weight: 500;
+    margin-bottom: 2px;
+    font-size: 14px;
+  }
+
+  /* ── DIVIDER ── */
+  .divider {
+    width: 100%;
+    max-width: 560px;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(255,255,255,0.1), transparent);
+    margin: 0 auto 56px;
+    animation: fadeUp 0.6s ease 0.7s both;
+  }
+
+  /* ── CTA ── */
+  .cta-block {
+    animation: fadeUp 0.6s ease 0.8s both;
+    max-width: 480px;
+  }
+
+  .cta-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.3);
+    margin-bottom: 16px;
+  }
+
+  .cta-heading {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(22px, 2.5vw, 32px);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 16px;
+  }
+
+  .cta-heading em { color: var(--red-light); font-style: italic; }
+
+  .cta-body {
+    font-size: 15px;
+    color: rgba(255,255,255,0.45);
+    line-height: 1.6;
+    margin-bottom: 32px;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 16px;
+    background: var(--red);
+    color: white;
+    padding: 20px 32px;
+    font-family: 'DM Sans', sans-serif;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-primary::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.08) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .btn-cta {
+    box-shadow: 0 8px 32px rgba(200,57,43,0.4), 0 2px 8px rgba(200,57,43,0.2);
+  }
+
+  .btn-cta:hover {
+    background: var(--red-light) !important;
+    transform: translateY(-3px) !important;
+    box-shadow: 0 16px 48px rgba(200,57,43,0.5), 0 4px 12px rgba(200,57,43,0.3) !important;
+  }
+
+  .btn-icon { font-size: 22px; flex-shrink: 0; }
+
+  .btn-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+  }
+
+  .btn-top {
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    line-height: 1;
+  }
+
+  .btn-sub {
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    opacity: 0.7;
+  }
+
+  .btn-arrow { font-size: 20px; transition: transform 0.2s; margin-left: 4px; }
+  .btn-primary:hover .btn-arrow { transform: translateX(5px); }
+
+  .btn-secondary {
+    display: inline-block;
+    color: rgba(255,255,255,0.35);
+    font-size: 13px;
+    text-decoration: none;
+    margin-top: 20px;
+    letter-spacing: 0.5px;
+    transition: color 0.2s;
+  }
+
+  .btn-secondary:hover { color: rgba(255,255,255,0.7); }
+
+  /* ── FOOTER ── */
+  footer {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 24px;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    font-size: 11px;
+    color: rgba(255,255,255,0.15);
+    letter-spacing: 0.5px;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 600px) {
+    .topbar { padding: 20px 24px; }
+    .step:not(:last-child)::after { display: none; }
+    .step { padding: 0 16px; }
+    .steps { gap: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="bg-glow"></div>
+
+<!-- TOP BAR -->
+<header class="topbar">
+  <div class="logo">MJ <span>Lidueña</span></div>
+</header>
+
+<main>
+
+  <!-- SUCCESS ICON -->
+  <div class="success-ring">
+    <div class="success-circle">✓</div>
+  </div>
+
+  <!-- COPY -->
+  <div class="eyebrow">Checklist enviada</div>
+
+  <h1 class="headline">
+    Revisa tu<br>
+    <em>bandeja de entrada.</em>
+  </h1>
+
+  <p class="subtext">
+    En unos minutos recibirás la checklist en tu email.
+    <strong>Revisa también el spam</strong> por si acaso — a veces los primeros emails acaban ahí.
+  </p>
+
+  <!-- STEPS -->
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-text">
+        <strong>Abre tu email</strong>
+        Busca un mensaje de María José Lidueña
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-text">
+        <strong>Descarga la checklist</strong>
+        10 minutos para diagnosticar tu proyecto
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-text">
+        <strong>Identifica tus fugas</strong>
+        Y decide qué quieres resolver primero
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- CTA -->
+  <div class="cta-block">
+    <div class="cta-label">Oferta exclusiva para nuevos suscriptores</div>
+    <h2 class="cta-heading">
+      30 minutos contigo.<br>
+      <em>Gratis. Sin compromiso.</em>
+    </h2>
+    <p class="cta-body">
+      Reserva ahora tu sesión de diagnóstico — analizamos tu proyecto digital, identificamos los cuellos de botella y te digo exactamente qué haría yo en tu lugar.
+    </p>
+
+    <a href="https://calendly.com/mjoseugr/30min?month=2026-03" target="_blank" class="btn-primary btn-cta">
+      <span class="btn-icon">📅</span>
+      <span class="btn-content">
+        <span class="btn-top">Reserva tu sesión gratuita</span>
+        <span class="btn-sub">30 min · Sin compromiso · Esta semana</span>
+      </span>
+      <span class="btn-arrow">→</span>
+    </a>
+
+    <br>
+    <a href="https://mjoselidu.github.io/leadmagnet" class="btn-secondary">← Volver a la página principal</a>
+  </div>
+
+</main>
+
+<footer>
+  © 2026 · María José Lidueña · Digital Strategy & Project Management · Madrid
+</footer>
+
+</body>
+</html>
